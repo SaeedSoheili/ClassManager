@@ -11,7 +11,7 @@ body {
     background-color: #14235E;
 }
 
-.container {}
+/* Page 1 Login Page START */
 
 .Page1 {
     width: 400px;
@@ -132,3 +132,164 @@ body {
     background: linear-gradient(90deg, #22396F, #14235E);
     border: none;
 }
+
+/* Page 1 Login Page FINISH */
+
+
+
+/* Page 2 Home Page START */
+
+.Page2Header {
+    width: 100%;
+    height: 60px;
+    background-color: #22396F;
+}
+
+.Page2RightMenu {
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 300px;
+    background-color: #0E184D;
+    position: absolute;
+}
+
+.Page2RightMenuLogo {
+    height: 100px;
+    width: 100px;
+    margin: 20px auto;
+    display: block;
+}
+
+.Page2RightMenuTitle {
+    color: white;
+    text-align: center;
+    font-family: vazir;
+    font-size: 28px;
+}
+
+.Page2RightMenuList {
+    list-style-type: none;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.Page2RightMenuListItems {
+    color: white;
+    margin-right: 30px;
+    font-family: vazir;
+    margin-bottom: 30px;
+    font-size: 18px;
+    border-top: 0.1px solid #14235E;
+    /* border-bottom: 0.1px solid #14235E; */
+    padding-top: 10px;
+    transition: 1s;
+
+}
+
+.Page2RightMenuListItems:hover {
+    /* background-color: #22396F; */
+    font-size: 25px;
+    transition: 0.5s;
+    font-weight: bolder;
+}
+
+.Page2RightMenuListItemsIcons {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 50px;
+}
+
+.Page2HeaderIconsExit {
+    width: 36px;
+    height: 36px;
+    margin-left: 50px;
+    margin-top: 7px;
+}
+
+.Page2HeaderIconsProfile {
+    width: 40px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.Page2HeaderPageTitle {
+    color: white;
+    font-size: 25px;
+    font-family: vazir;
+    float: right;
+    margin-right: 400px;
+    margin-top: 10px;
+    direction: rtl;
+}
+
+.Page2Middle {
+    background-color: green;
+    width: 900px;
+    height: auto;
+    position: relative;
+    display: block;
+}
+
+.Page2MiddleRightTopBox {
+    width: 300px;
+    height: 300px;
+    background-color: #22396F;
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px black;
+    background-image: url(assets/images/education.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+}
+
+.Page2MiddleRightTopBoxHeaderDiv {
+    /* background-color: red; */
+    align-items: center;
+    text-align: center;
+    font-family: vazir;
+    color: white;
+}
+
+.Page2MiddleRightTopBoxHeaderTitle {
+    margin-bottom: -10px;
+}
+
+.Page2MiddleRightTopBoxClickToUpload {
+    text-align: center;
+    font-family: vazir;
+    color: white;
+    display: block;
+    margin: 155px auto;
+}
+
+/* .Page2MiddleRightTopBoxClickToUpload {
+    text-align: center;
+    font-family: vazir;
+    color: white;
+    width: 70px;
+    display: block;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    border: 1px dashed black;
+} */
+
+
+
+
+/* Page 2 Home Page FINISH */
+
+
+
+
+
+/* Responsive */
+/* @media only screen and (min-width: 1201px) {} */
