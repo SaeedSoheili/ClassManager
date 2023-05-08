@@ -227,7 +227,7 @@ body {
 }
 
 .Page2Middle {
-    background-color: green;
+    /* background-color: green; */
     width: 900px;
     height: auto;
     position: relative;
@@ -240,7 +240,7 @@ body {
     background-color: #22396F;
     position: absolute;
     right: 0px;
-    top: 40px;
+    top: 20px;
     border-radius: 20px;
     box-shadow: 1px 1px 20px black;
     background-image: url(assets/images/education.png);
@@ -260,6 +260,7 @@ body {
 
 .Page2MiddleRightTopBoxHeaderTitle {
     margin-bottom: -10px;
+    margin-top: 10px;
 }
 
 .Page2MiddleRightTopBoxClickToUpload {
@@ -267,7 +268,7 @@ body {
     font-family: vazir;
     color: white;
     display: block;
-    margin: 155px auto;
+    margin: 175px auto;
 }
 
 /* .Page2MiddleRightTopBoxClickToUpload {
@@ -282,8 +283,87 @@ body {
     border: 1px dashed black;
 } */
 
+.Page2MiddleLeftTopBox {
+    width: 560px;
+    height: 300px;
+    background-color: #22396F;
+    position: absolute;
+    top: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px black;
+    background-image: url(assets/images/browser-window-displaying-workspace.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
 
 
+.Page2MiddleLeftTopBoxTitle {
+    color: white;
+    text-align: center;
+    margin: 10px 20px;
+    font-family: vazir;
+    font-size: 20px;
+}
+
+.Page2MiddleLeftTopBoxSubTitle {
+    color: white;
+    text-align: center;
+    margin: 180px 20px;
+    font-family: vazir;
+}
+
+.Page2MiddleBottomBox {
+    width: 100%;
+    height: 300px;
+    background-color: #22396F;
+    position: absolute;
+    top: 350px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px black;
+    background-image: url(assets/images/people-collaborating-with-tech-.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}
+
+.Page2MiddleBottomBoxTitle {
+    color: white;
+    text-align: right;
+    width: 500px;
+    float: right;
+    margin-right: 20px;
+    font-family: vazir;
+}
+
+.Page2MiddleBottomBoxBtn {
+    position: absolute;
+    bottom: 80px;
+    right: 150px;
+    width: 200px;
+    height: 40px;
+    background-color: #0E184D;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+    font-family: vazir;
+    font-size: 20px;
+}
+
+.Page2MiddleBottomBoxBtnImage {
+    background-image: url(assets/support-white-icon.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 40px;
+}
+
+.Page2MiddleBottomBoxBtnTxt {
+    margin-left: 50px;
+}
 
 /* Page 2 Home Page FINISH */
 
