@@ -18,7 +18,7 @@
     <div class="pageContainer">
 
         <!-- Page 1 Login Page START -->
-        <div style="display: none;" class="Page1">
+        <div class="Page1">
             <div class="Page1HeaderEffectDiv">
                 <div class="box"></div>
             </div>
@@ -28,12 +28,12 @@
             </div>
             <div class="Page1Forms">
                 <div class="Page1formControl">
-                    <label class="Page1Label" for="Page1Input">نام کاربری</label>
-                    <input class="Page1Input" id="Page1Input">
+                    <label class="Page1Label Page1InputUsernameLabel" for="Page1InputUsername">نام کاربری</label>
+                    <input class="Page1Input Page1InputUsername" id="Page1InputUsername">
                 </div>
                 <div class="Page1formControl">
-                    <label class="Page1Label" for="Page1Input">رمز‌ عبور</label>
-                    <input class="Page1Input" id="Page1Input">
+                    <label class="Page1Label Page1InputPasswordLabel" for="Page1InputPassword">رمز‌ عبور</label>
+                    <input class="Page1Input Page1InputPassword" id="Page1InputPassword">
                 </div>
             </div>
             <div class="Page1Footer">
@@ -44,7 +44,7 @@
         <!-- Page 1 Login Page FINISH -->
 
         <!-- Page 2 Home Page START -->
-        <div class="Page2">
+        <div style="display: none;" class="Page2">
             <div class="Page2Header">
                 <img class="Page2HeaderIconsExit" src="assets/logout-white-icon.png">
                 <img class="Page2HeaderIconsProfile" src="assets/profile-white-icon.png">
@@ -56,20 +56,20 @@
                     <img class="Page2RightMenuLogo" src="assets/logo-white.png">
                     <h1 class="Page2RightMenuTitle">سامانه مدیریت کلاس</h1>
                     <ul class="Page2RightMenuList">
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/home-white-icon.png">خانه</li>
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/homework-white-icon.png">تکالیف</li>
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/speaker-white-icon.png">اطلاعیه ها</li>
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/learn-white-icon.png">آموزش</li>
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/profile-white-icon.png">پروفایل</li>
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/support-white-icon.png">پشتیبانی</li>
-                        <li class="Page2RightMenuListItems"><img class="Page2RightMenuListItemsIcons"
-                                src="assets/logout-white-icon.png">خروج</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsHome"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/home-white-icon.png">خانه</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsHomeworks"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/homework-white-icon.png">تکالیف</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsAnouncements"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/speaker-white-icon.png">اطلاعیه ها</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsLearn"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/learn-white-icon.png">آموزش</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsProfile"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/profile-white-icon.png">پروفایل</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsSupport"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/support-white-icon.png">پشتیبانی</li>
+                        <li class="Page2RightMenuListItems Page2RightMenuListItemsExit"><img
+                                class="Page2RightMenuListItemsIcons" src="assets/logout-white-icon.png">خروج</li>
                     </ul>
                 </div>
             </div>
@@ -218,6 +218,7 @@
 
 
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parse/2.15.0/parse.min.js"></script>
     <script src="script.js"></script>
 </body>
 

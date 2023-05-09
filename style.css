@@ -273,7 +273,6 @@ body {
 }
 
 .Page2MiddleRightTopBoxHeaderTitle {
-    margin-bottom: -10px;
     margin-top: 10px;
 }
 
@@ -323,7 +322,7 @@ body {
 .Page2MiddleLeftTopBoxSubTitle {
     color: white;
     text-align: center;
-    margin: 180px 20px;
+    margin: 200px 20px;
     font-family: vazir;
 }
 
@@ -348,11 +347,12 @@ body {
     float: right;
     margin-right: 20px;
     font-family: vazir;
+    margin-top: 20px;
 }
 
 .Page2MiddleBottomBoxBtn {
     position: absolute;
-    bottom: 80px;
+    bottom: 60px;
     right: 150px;
     width: 200px;
     height: 40px;
