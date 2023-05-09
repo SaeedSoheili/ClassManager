@@ -8,7 +8,7 @@ body {
     padding: 0px;
     border: 0px;
     box-sizing: border-box;
-    background-color: #14235E;
+    background-color: #14235E !important;
 }
 
 /* Page 1 Login Page START */
@@ -143,6 +143,9 @@ body {
     width: 100%;
     height: 60px;
     background-color: #22396F;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .Page2RightMenu {
@@ -152,6 +155,12 @@ body {
     width: 300px;
     background-color: #0E184D;
     position: absolute;
+    z-index: 101;
+}
+
+.Page2RightMenuDiv {
+    position: sticky;
+    top: 20px;
 }
 
 .Page2RightMenuLogo {
@@ -226,7 +235,12 @@ body {
     direction: rtl;
 }
 
-.Page2Middle {
+.Page2Middle,
+.HomeWorkPage,
+.AnnouncementsPage,
+.LearnPage,
+.ProfilePage,
+.SupportPage {
     /* background-color: green; */
     width: 900px;
     height: auto;
@@ -367,6 +381,266 @@ body {
 
 /* Page 2 Home Page FINISH */
 
+/* Page 2 Hme Works START */
+.HomeWorkPageDiv {
+    margin: 0px auto;
+}
+
+.HomeWorkPageTable {
+    font-family: vazir;
+    border-radius: 10px;
+    border: 0px !important;
+
+}
+
+.HomeWorkPageAddNew {
+    /* background: red; */
+    margin: 20px auto;
+    font-family: vazir;
+}
+
+.HomeWorkPageAddNewInput {
+    border: 0px;
+    width: 630px;
+    height: 34px;
+    border-radius: 5px;
+    float: right;
+    padding-left: 20px;
+}
+
+.HomeWorkPageAddNewInput::placeholder {
+    direction: ltr;
+    text-align: center;
+
+}
+
+.HomeWorkPageTable tr td img {
+    width: 25px;
+}
+
+/* Page 2 Hme Works FINISH */
+
+/* Page 2 Announcements START */
+
+.AnnouncementsPageDiv {
+    margin: 0 auto;
+}
+
+.AnnouncementsPageItemsDiv {
+    background-color: white;
+    width: 900px;
+    height: 100px;
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+    direction: rtl;
+    border-radius: 10px;
+    margin: 10px auto;
+    font-family: vazir;
+}
+
+.AnnouncementsPageItemsDiv strong {
+    color: red;
+}
+
+/* Page 2 Announcements FINISH */
+
+/* Page 2 Learn START */
+
+.LearnPageItem {
+    color: white;
+    width: 300px;
+    height: 150px;
+    background-color: #0E184D;
+    font-family: vazir;
+    text-align: center;
+    margin: 200px auto;
+    border-radius: 20px;
+    font-size: 23px;
+    justify-content: center;
+    display: flex;
+    box-shadow: 5px 5px 10px black, -5px -5px 10px black
+}
+
+.LearnPageItem div {
+    margin-top: 50px;
+}
+
+.LearnPageItemChooseYourDevice {
+    color: white;
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    /* background-color: red; */
+    padding-top: 150px;
+    padding-left: 7px;
+}
+
+.LearnPageItemChooseYourDeviceItemsMobile,
+.LearnPageItemChooseYourDeviceItemsPC {
+    background-color: #0E184D;
+    display: inline-block;
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+}
+
+.LearnPageItemChooseYourDeviceItemsPCImage {
+    background-image: url(assets/learn-page/icons8-monitor-100.png);
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+.LearnPageItemChooseYourDeviceItemsMobileImage {
+    background-image: url(assets/learn-page/icons8-smartphone-tablet-100.png);
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+.LearnPageItemChooseYourDeviceItemsPCTitle,
+.LearnPageItemChooseYourDeviceItemsMobileTitle {
+    font-family: vazir;
+    text-align: center;
+    font-size: 25px;
+}
+
+.LearnPageItemChooseYourDevice h3 {
+    font-family: vazir;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.LearnPageItemVideos {
+    /* background-color: red; */
+    display: flex;
+    width: 100%;
+    margin-top: 100px;
+    flex-flow: column wrap;
+}
+
+.LearnPageItemVideosVideo {
+    margin: 0 auto;
+    height: 300px;
+    border-radius: 20px;
+    border: 10px solid #0E184D;
+    box-shadow: 0px 10px 20px black;
+}
+
+.LearnPageItemVideos h3 {
+    color: white;
+    font-family: vazir;
+    margin: 30px auto;
+    box-shadow: 0px 5px 20px black;
+    /* border-radius: 30px; */
+    background-color: #22396F;
+    width: 500px;
+    height: 50px;
+    padding-top: 7px;
+    text-align: center;
+}
+
+/* Page 2 Learn FINISH */
+
+/* Page 2 Profile START */
+.ProfilePageDiv {
+    background-color: #22396F;
+    width: 400px;
+    height: 550px;
+    margin: 50px auto;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px black;
+    display: flex;
+    flex-flow: column wrap;
+
+}
+
+.ProfilePageDivImage {
+    background-image: url(assets/profile-white-icon.png);
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    margin: 20px auto;
+}
+
+.ProfilePagePersonNameLabel,
+.ProfilePagePersonNumberLabel,
+.ProfilePagePersonPasswordLabel {
+    color: #fff;
+    font-family: vazir;
+    text-align: center;
+    font-size: 20px;
+}
+
+.ProfilePagePersonNameInput,
+.ProfilePagePersonNumberInput,
+.ProfilePagePersonPasswordInput {
+    width: 300px;
+    height: 35px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: #14235E;
+    border: 0px;
+    font-family: vazir;
+    color: white;
+    text-align: center;
+}
+
+.ProfilePageSubmit {
+    color: white;
+    font-family: vazir;
+    margin: 30px auto;
+    width: 200px;
+    background-color: black;
+    text-align: center;
+    height: 40px;
+    padding-top: 7px;
+    border-radius: 10px;
+}
+
+/* Page 2 Profile FINISH */
+
+
+
+
+/* Page 2 Support START */
+.SupportPageDiv {
+    background-color: #0E184D;
+    margin: 100px auto;
+    width: 500px;
+    height: 300px;
+    border-radius: 30px;
+    position: relative;
+    box-shadow: 5px 5px 20px black, -5px 5px 20px black;
+}
+
+.SupportPageBlur {
+    background-image: url(assets/support-page/icons8-error-96.png);
+    width: 200px;
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    background-size: cover;
+    filter: blur(10px);
+}
+
+.SupportPageTitle {
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-family: vazir;
+    top: 150px;
+}
+
+/* Page 2 Support FINISH */
 
 
 
