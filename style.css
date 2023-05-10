@@ -11,6 +11,10 @@ body {
     background-color: #14235E !important;
 }
 
+* {
+    cursor: default;
+}
+
 /* Page 1 Login Page START */
 
 .Page1 {
@@ -76,6 +80,7 @@ body {
     font-weight: bolder;
     border-radius: 8px;
     text-align: center;
+    cursor: pointer;
 }
 
 .Page1Footer {
@@ -96,6 +101,7 @@ body {
     color: white;
     background-color: #14235E;
     font-family: vazir;
+    cursor: pointer;
 
 }
 
@@ -194,7 +200,7 @@ body {
     /* border-bottom: 0.1px solid #14235E; */
     padding-top: 10px;
     transition: 1s;
-
+    cursor: pointer;
 }
 
 .Page2RightMenuListItems:hover {
@@ -282,6 +288,7 @@ body {
     color: white;
     display: block;
     margin: 175px auto;
+    cursor: pointer;
 }
 
 /* .Page2MiddleRightTopBoxClickToUpload {
@@ -324,6 +331,7 @@ body {
     text-align: center;
     margin: 200px 20px;
     font-family: vazir;
+    cursor: pointer;
 }
 
 .Page2MiddleBottomBox {
@@ -362,6 +370,7 @@ body {
     color: #fff;
     font-family: vazir;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .Page2MiddleBottomBoxBtnImage {
@@ -373,10 +382,12 @@ body {
     height: 30px;
     position: absolute;
     left: 40px;
+    cursor: pointer;
 }
 
 .Page2MiddleBottomBoxBtnTxt {
     margin-left: 50px;
+    cursor: pointer;
 }
 
 /* Page 2 Home Page FINISH */
@@ -406,6 +417,7 @@ body {
     border-radius: 5px;
     float: right;
     padding-left: 20px;
+    cursor: text;
 }
 
 .HomeWorkPageAddNewInput::placeholder {
@@ -416,6 +428,10 @@ body {
 
 .HomeWorkPageTable tr td img {
     width: 25px;
+}
+
+.HomeWorkPageTable tr td a {
+    cursor: pointer;
 }
 
 /* Page 2 Hme Works FINISH */
@@ -459,11 +475,15 @@ body {
     font-size: 23px;
     justify-content: center;
     display: flex;
-    box-shadow: 5px 5px 10px black, -5px -5px 10px black
+    box-shadow: 5px 5px 10px black, -5px -5px 10px black;
+    cursor: pointer;
+
 }
 
 .LearnPageItem div {
     margin-top: 50px;
+    cursor: pointer;
+
 }
 
 .LearnPageItemChooseYourDevice {
@@ -483,6 +503,7 @@ body {
     width: 240px;
     height: 240px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .LearnPageItemChooseYourDeviceItemsPCImage {
@@ -492,6 +513,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
+    cursor: pointer;
+
 }
 
 .LearnPageItemChooseYourDeviceItemsMobileImage {
@@ -501,6 +524,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
+    cursor: pointer;
+
 }
 
 .LearnPageItemChooseYourDeviceItemsPCTitle,
@@ -508,6 +533,8 @@ body {
     font-family: vazir;
     text-align: center;
     font-size: 25px;
+    cursor: pointer;
+
 }
 
 .LearnPageItemChooseYourDevice h3 {
@@ -603,6 +630,7 @@ body {
     height: 40px;
     padding-top: 7px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 /* Page 2 Profile FINISH */

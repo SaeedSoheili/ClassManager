@@ -13,6 +13,7 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 let userName;
 let userUserName;
 let userPassword;
+let userTeacherName;
 let userLoggedIn = false
 
 let $ = document
@@ -35,6 +36,7 @@ let Page2MiddleBottomBoxBtn = $.querySelector(".Page2MiddleBottomBoxBtn")
 let Page2MiddleLeftTopBox = $.querySelector(".Page2MiddleLeftTopBox")
 let LearnPageItemChooseYourDevice = $.querySelector(".LearnPageItemChooseYourDevice")
 let LearnPageItemVideos = $.querySelector(".LearnPageItemVideos")
+let uploadedlinkInput = $.querySelector(".HomeWorkPageAddNewInput")
 
 
 
@@ -60,11 +62,14 @@ async function login() {
         userName = user.get("name");
         userUserName = user.get("username");
         userPassword = user.get("globalpassword");
+        userTeacherName = user.get("userTeacherName");
         userLoggedIn = true;
 
         generateCookie("token", generateToken(), generateExpireTime())
         showPages("fromLoginPage")
         loadUserProfile()
+        loadAnnouncements()
+        loadHomeworks()
     } catch (error) {
         userLoggedIn = false
     }
@@ -155,6 +160,8 @@ async function autoLoginWithCookie(userusername, password) {
         generateCookie("token", generateToken(), generateExpireTime())
         showPages("fromLoginPage")
         loadUserProfile()
+        loadAnnouncements()
+        loadHomeworks()
     } catch (error) {
         // If unsuccessful, notify the user or do something else
         // console.log(`Error: ${error.message}`);
@@ -257,16 +264,17 @@ function convertToEnglishNumber(persianNumber) {
 
 function logIranTime() {
     let iranTime = new Date().toLocaleTimeString('fa-IR', { timeZone: 'Asia/Tehran' });
-    return convertToEnglishNumber(iranTime);
+    return convertToEnglishNumber(iranTime).substring(0, iranTime.length - 3);;
 }
 
 
-function sendAnnouncement(sender, announceMessage, announceid) {
+async function sendAnnouncement(sender, announceMessage) {
     // Get the current date in the format required by Back4App
-    var date = logIranDate();
+    let date = logIranTime() + " " + logIranDate();
+    let announceid = await generateNewIdForAnnouncement();
 
     // Create a new object with the data to be saved
-    var announcement = {
+    let announcement = {
         sender: sender,
         date: date,
         announceMessage: announceMessage,
@@ -274,8 +282,8 @@ function sendAnnouncement(sender, announceMessage, announceid) {
     };
 
     // Save the object to the "Announcements" collection using the Back4App SDK
-    var Announcements = Parse.Object.extend("Announcements");
-    var announcementObject = new Announcements();
+    let Announcements = Parse.Object.extend("Announcements");
+    let announcementObject = new Announcements();
     announcementObject.save(announcement).then(function (response) {
         console.log('Announcement saved successfully:', response);
     }, function (error) {
@@ -283,7 +291,79 @@ function sendAnnouncement(sender, announceMessage, announceid) {
     });
 }
 
-sendAnnouncement("پشتیبانی سامانه مدیریت کلاس", "سلام ، به سامانه مدیریت کلاس خوش آمدید!", 1)
+// sendAnnouncement("پشتیبانی سامانه مدیریت کلاس", "سلام ، به سامانه مدیریت کلاس خوش آمدید!")
+
+async function generateNewIdForAnnouncement() {
+    // Create a new query for the "Announcements" collection
+    let Announcements = Parse.Object.extend("Announcements");
+    let query = new Parse.Query(Announcements);
+
+    // Sort the query by the "announceid" field in descending order
+    query.descending("announceid");
+
+    try {
+        // Execute the query and get the first result
+        let result = await query.first();
+
+        if (result) {
+            // If there is at least one announcement, add 1 to the highest existing ID
+            let highestId = result.get("announceid");
+            return highestId + 1;
+        } else {
+            // If there are no announcements, return 1 as the ID for the first announcement
+            return 1;
+        }
+    } catch (error) {
+        console.error('Error while generating ID for announcement:', error);
+        throw error;
+    }
+}
+
+
+function loadAnnouncements() {
+    // Create a new query for the "Announcements" collection
+    let Announcements = Parse.Object.extend("Announcements");
+    let query = new Parse.Query(Announcements);
+
+    // Limit the query to the 50 most recent announcements
+    query.ascending("createdAt");
+    query.limit(50);
+
+    // Execute the query and process the results
+    query.find().then(function (results) {
+        // Get a reference to the element where the announcements will be displayed
+        let announcementList = $.querySelector(".AnnouncementsPageDiv");
+
+        // Clear any existing announcements from the list
+        announcementList.innerHTML = "";
+
+        // Loop through the results and add each announcement to the list
+        for (let i = results.length - 1; i >= 0; i--) {
+            let announcement = results[i];
+            let sender = announcement.get("sender");
+            let date = announcement.get("date");
+            let message = announcement.get("announceMessage");
+            let id = announcement.get("announceid");
+
+            announcementList.innerHTML += `
+            <div class="AnnouncementsPageItemsDiv">
+            <span><strong>فرستنده: </strong>
+            ${sender}
+            </span>
+            <br>
+            <span><strong>تاریخ: </strong>
+            ${date}
+            </span>
+            <p><strong>پیام: </strong>
+            ${message}
+            </p>
+            </div>
+            `
+        }
+    }, function (error) {
+        console.error('Error while loading announcements:', error);
+    });
+}
 
 
 
@@ -291,6 +371,113 @@ sendAnnouncement("پشتیبانی سامانه مدیریت کلاس", "سلا�
 
 
 
+async function sendHomework(sender, homeworklink, teachername, status) {
+    // Get the current date in the format required by Back4App
+    let date = logIranTime() + " " + logIranDate();
+    let homeworkidgenerated = await generateNewIdForHomeworks(sender)
+    // Create a new object with the data to be saved
+    let newHomework = {
+        sender: sender,
+        date: date,
+        homeworklink: homeworklink,
+        homeworkid: homeworkidgenerated,
+        status: status,
+        teachername: teachername
+    };
+
+    // Save the object to the "Announcements" collection using the Back4App SDK
+    let HomeWorks = Parse.Object.extend("Homeworks");
+    let homeworksObject = new HomeWorks();
+    homeworksObject.save(newHomework).then(function (response) {
+        console.log('Homeworks saved successfully:', response);
+        loadHomeworks()
+        uploadedlinkInput.value = ""
+    }, function (error) {
+        console.error('Error while saving Homeworks:', error);
+    });
+}
+
+
+async function generateNewIdForHomeworks(sender) {
+    let Homeworks = Parse.Object.extend("Homeworks");
+    let query = new Parse.Query(Homeworks);
+
+    // Add a constraint to only find homeworks with the specified name
+    query.equalTo("sender", sender);
+
+    // Sort the results based on the "homeworkid" field in descending order
+    query.descending("homeworkid");
+
+    // Limit the query to return at most 1 result
+    query.limit(1);
+
+    // Execute the query and process the results
+    let results = await query.find();
+
+    if (results.length > 0) {
+        // If there are any results, get the ID of the first one and add 1 to it
+        let lastId = results[0].get("homeworkid");
+        return lastId + 1;
+    } else {
+        // If there are no results, return 1
+        return 1;
+    }
+}
+
+function loadHomeworks() {
+    // Create a new query for the "Homeworks" collection
+    let Homeworks = Parse.Object.extend("Homeworks");
+    let query = new Parse.Query(Homeworks);
+
+    // Limit the query to the 50 most recent Homeworks
+    query.ascending("createdAt");
+
+    // Execute the query and process the results
+    query.find().then(function (results) {
+        // Get a reference to the element where the Homeworks will be displayed
+        let homeworksList = $.querySelector(".HomeWorkPageTable");
+
+        // Clear any existing Homeworks from the list
+        homeworksList.innerHTML = `
+        <tr>
+        <th></th>
+        <th>لینک تکلیف</th>
+        <th>زمان تحویل</th>
+        <th>وضعیت</th>
+        </tr>
+        `
+
+        // Loop through the results and add each Homeworks to the list
+        for (let i = results.length - 1; i >= 0; i--) {
+            let homeworks = results[i];
+            let sender = homeworks.get("sender");
+            let date = homeworks.get("date");
+            let homeworklink = homeworks.get("homeworklink");
+            let homeworkid = homeworks.get("homeworkid");
+            let status = homeworks.get("status");
+            let teachername = homeworks.get("teachername");
+
+            if (status == "pending") {
+                status = "assets/status-icons/icons8-view-more-96.png"
+            } else if (status == "accepted") {
+                status = "assets/status-icons/icons8-ok-96.png"
+            } else if (status == "rejected") {
+                status = "assets/status-icons/icons8-cancel-96.png"
+            }
+
+            homeworksList.innerHTML += `
+            <tr>
+            <td>#${homeworkid}</td>
+            <td><a href="${homeworklink}" target="_blank">دانلود فایل</a></td>
+            <td>${date}</td>
+            <td><img src="${status}"></td>
+            </tr>
+            `
+        }
+    }, function (error) {
+        console.error('Error while loading homeworks:', error);
+    });
+}
 
 
 
@@ -318,6 +505,9 @@ Page2MiddleLeftTopBox.addEventListener("click", function () {
 Page2MiddleBottomBoxBtn.addEventListener("click", function () {
     $.querySelector(".SupportPageMenu").click()
 })
+$.querySelector(".HomeWorkPageAddNewLearnBtn").addEventListener("click", function () {
+    $.querySelector(".LearnPageMenu").click()
+})
 
 
 
@@ -329,4 +519,10 @@ $.querySelector(".LearnPageItemChooseYourDeviceItemsMobile").addEventListener("c
 })
 $.querySelector(".LearnPageItemChooseYourDeviceItemsPC").addEventListener("click", function () {
     showPages("pcSelected")
+})
+
+$.querySelector(".HomeWorkPageAddNewBtn").addEventListener("click", function () {
+
+    sendHomework(userName, uploadedlinkInput.value, userTeacherName, "pending")
+
 })
