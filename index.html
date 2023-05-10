@@ -29,11 +29,11 @@
             <div class="Page1Forms">
                 <div class="Page1formControl">
                     <label class="Page1Label Page1InputUsernameLabel" for="Page1InputUsername">نام کاربری</label>
-                    <input class="Page1Input Page1InputUsername" id="Page1InputUsername">
+                    <input class="Page1Input Page1InputUsername" id="Page1InputUsername" type="text">
                 </div>
                 <div class="Page1formControl">
                     <label class="Page1Label Page1InputPasswordLabel" for="Page1InputPassword">رمز‌ عبور</label>
-                    <input class="Page1Input Page1InputPassword" id="Page1InputPassword">
+                    <input class="Page1Input Page1InputPassword" id="Page1InputPassword" type="password">
                 </div>
             </div>
             <div class="Page1Footer">
@@ -56,17 +56,17 @@
                     <img class="Page2RightMenuLogo" src="assets/logo-white.png">
                     <h1 class="Page2RightMenuTitle">سامانه مدیریت کلاس</h1>
                     <ul class="Page2RightMenuList">
-                        <li class="Page2RightMenuListItems Page2RightMenuListItemsHome"><img
+                        <li class="Page2RightMenuListItems Page2MiddleMenu websitePagesMneu"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/home-white-icon.png">خانه</li>
-                        <li class="Page2RightMenuListItems Page2RightMenuListItemsHomeworks"><img
+                        <li class="Page2RightMenuListItems HomeWorkPageMenu websitePagesMneu"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/homework-white-icon.png">تکالیف</li>
-                        <li class="Page2RightMenuListItems Page2RightMenuListItemsAnouncements"><img
+                        <li class="Page2RightMenuListItems AnnouncementsPageMenu websitePagesMneu"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/speaker-white-icon.png">اطلاعیه ها</li>
-                        <li class="Page2RightMenuListItems Page2RightMenuListItemsLearn"><img
+                        <li class="Page2RightMenuListItems LearnPageMenu websitePagesMneu"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/learn-white-icon.png">آموزش</li>
-                        <li class="Page2RightMenuListItems Page2RightMenuListItemsProfile"><img
+                        <li class="Page2RightMenuListItems ProfilePageMenu websitePagesMneu"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/profile-white-icon.png">پروفایل</li>
-                        <li class="Page2RightMenuListItems Page2RightMenuListItemsSupport"><img
+                        <li class="Page2RightMenuListItems SupportPageMenu websitePagesMneu"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/support-white-icon.png">پشتیبانی</li>
                         <li class="Page2RightMenuListItems Page2RightMenuListItemsExit"><img
                                 class="Page2RightMenuListItemsIcons" src="assets/logout-white-icon.png">خروج</li>
@@ -75,7 +75,7 @@
             </div>
 
             <!-- Home Page START -->
-            <div style="display: none;" class="Page2Middle">
+            <div style="display: none;" class="Page2Middle websitePages">
                 <div class="Page2MiddleRightTopBox">
                     <div class="Page2MiddleRightTopBoxHeaderDiv">
                         <h2 class="Page2MiddleRightTopBoxHeaderTitle" dir="rtl">مشقاتو نوشتی؟</h2>
@@ -105,7 +105,7 @@
             <!-- Home Page FINISH -->
 
             <!-- Home Works START -->
-            <div style="display: none;" class="HomeWorkPage">
+            <div style="display: none;" class="HomeWorkPage websitePages">
                 <div class="HomeWorkPageAddNew">
                     <btn class="HomeWorkPageAddNewLearnBtn btn btn-warning">آموزش دریافت لینک</btn>
                     <btn class="HomeWorkPageAddNewBtn btn btn-success">ثبت تکلیف</btn>
@@ -132,7 +132,7 @@
             <!-- Home Works FINISH -->
 
             <!-- Announcements START -->
-            <div style="display: none;" class="AnnouncementsPage">
+            <div style="display: none;" class="AnnouncementsPage websitePages">
                 <div class="AnnouncementsPageDiv">
                     <div class="AnnouncementsPageItemsDiv">
                         <span><strong>فرستنده: </strong>
@@ -151,7 +151,7 @@
             <!-- Announcements FINISH -->
 
             <!-- Learn START -->
-            <div style="display: none;" class="LearnPage">
+            <div style="display: none;" class="LearnPage websitePages">
                 <div class="LearnPageDiv">
                     <div class="LearnPageItem">
                         <div>آموزش آپلود فایل</div>
@@ -178,29 +178,29 @@
             <!-- Learn FINISH -->
 
             <!-- Profile START -->
-            <div style="display: none;" class="ProfilePage">
+            <div style="display: none;" class="ProfilePage websitePages">
                 <div class="ProfilePageDiv">
                     <div class="ProfilePageDivImage"></div>
                     <label class="ProfilePagePersonNameLabel" for="ProfilePagePersonNameInput">نام و نام
                         خانوادگی</label>
-                    <input class="ProfilePagePersonNameInput" id="ProfilePagePersonNameInput" type="text"
-                        value="محمد حسینی" disabled>
+                    <input class="ProfilePagePersonNameInput" id="ProfilePagePersonNameInput" type="text" value=""
+                        disabled>
                     <br>
                     <label class="ProfilePagePersonNumberLabel" for="ProfilePagePersonNumberInput">شماره
                         دانشجویی</label>
-                    <input class="ProfilePagePersonNumberInput" id="ProfilePagePersonNumberInput" type="number"
-                        value="4444555566666" disabled>
+                    <input class="ProfilePagePersonNumberInput" id="ProfilePagePersonNumberInput" type="number" value=""
+                        disabled>
                     <br>
                     <label class="ProfilePagePersonPasswordLabel" for="ProfilePagePersonPasswordInput">رمز عبور</label>
                     <input class="ProfilePagePersonPasswordInput" id="ProfilePagePersonPasswordInput" type="password"
-                        value="123456789" disabled>
+                        value="" disabled>
                     <div class="ProfilePageSubmit">ذخیره تغییرات</div>
                 </div>
             </div>
             <!-- Profile FINISH -->
 
             <!-- Support START -->
-            <div style="display: none;" class="SupportPage">
+            <div style="display: none;" class="SupportPage websitePages">
                 <div class="SupportPageDiv">
                     <div class="SupportPageBlur"></div>
                     <h3 class="SupportPageTitle">این بخش به زودی در دسترس عموم قرار میگیرد</h3>

@@ -1,14 +1,8 @@
-///////for show/hide pages /////////
 const screenWidth = window.innerWidth;
 const pageHeight = document.documentElement.scrollHeight;
 const Page2Middle = document.querySelector(".Page2Middle")
-const HomeWorkPage = document.querySelector(".HomeWorkPage")
-const AnnouncementsPage = document.querySelector(".AnnouncementsPage")
 const Page2RightMenu = document.querySelector(".Page2RightMenu")
-const LearnPage = document.querySelector(".LearnPage")
-const ProfilePage = document.querySelector(".ProfilePage")
-const SupportPage = document.querySelector(".SupportPage")
-////////////////////////////////////
+
 // Initialize Parse
 Parse.initialize(
     "AhXuzTm5NWUatOedSxHkoFjODdl81HyDSAvpWqIf",
@@ -28,15 +22,19 @@ let Page1 = $.querySelector(".Page1")
 let Page2 = $.querySelector(".Page2")
 
 let wichPageYouAreIn = "Page1"
-let Page2RightMenuListItemsHome = $.querySelector(".Page2RightMenuListItemsHome")
-let Page2RightMenuListItemsHomeworks = $.querySelector(".Page2RightMenuListItemsHomeworks")
-let Page2RightMenuListItemsAnouncements = $.querySelector(".Page2RightMenuListItemsAnouncements")
-let Page2RightMenuListItemsLearn = $.querySelector(".Page2RightMenuListItemsLearn")
-let Page2RightMenuListItemsProfile = $.querySelector(".Page2RightMenuListItemsProfile")
-let Page2RightMenuListItemsSupport = $.querySelector(".Page2RightMenuListItemsSupport")
+
+let websitePages = $.querySelectorAll(".websitePages")
+let websitePagesMneu = $.querySelectorAll(".websitePagesMneu")
+
+let Page2HeaderPageTitle = $.querySelector(".Page2HeaderPageTitle")
 let Page2RightMenuListItemsExit = $.querySelector(".Page2RightMenuListItemsExit")
-
-
+let Page2HeaderIconsExit = $.querySelector(".Page2HeaderIconsExit")
+let Page2HeaderIconsProfile = $.querySelector(".Page2HeaderIconsProfile")
+let Page2MiddleRightTopBox = $.querySelector(".Page2MiddleRightTopBox")
+let Page2MiddleBottomBoxBtn = $.querySelector(".Page2MiddleBottomBoxBtn")
+let Page2MiddleLeftTopBox = $.querySelector(".Page2MiddleLeftTopBox")
+let LearnPageItemChooseYourDevice = $.querySelector(".LearnPageItemChooseYourDevice")
+let LearnPageItemVideos = $.querySelector(".LearnPageItemVideos")
 
 
 
@@ -44,12 +42,9 @@ let Page2RightMenuListItemsExit = $.querySelector(".Page2RightMenuListItemsExit"
 function changeMiddleOfThePageBoxWidth() {
     if (screenWidth >= 1240) {
         let marginLeftSize = (screenWidth - 1240) / 2 + "px"
-        Page2Middle.style.marginLeft = marginLeftSize
-        HomeWorkPage.style.marginLeft = marginLeftSize
-        AnnouncementsPage.style.marginLeft = marginLeftSize
-        LearnPage.style.marginLeft = marginLeftSize
-        ProfilePage.style.marginLeft = marginLeftSize
-        SupportPage.style.marginLeft = marginLeftSize
+        websitePages.forEach(function (thatPage) {
+            thatPage.style.marginLeft = marginLeftSize
+        })
     }
     Page2RightMenu.style.height = pageHeight + "px"
 }
@@ -69,6 +64,7 @@ async function login() {
 
         generateCookie("token", generateToken(), generateExpireTime())
         showPages("fromLoginPage")
+        loadUserProfile()
     } catch (error) {
         userLoggedIn = false
     }
@@ -158,6 +154,7 @@ async function autoLoginWithCookie(userusername, password) {
 
         generateCookie("token", generateToken(), generateExpireTime())
         showPages("fromLoginPage")
+        loadUserProfile()
     } catch (error) {
         // If unsuccessful, notify the user or do something else
         // console.log(`Error: ${error.message}`);
@@ -172,7 +169,129 @@ function showPages(wichOne) {
         Page1.style.display = "none"
         wichPageYouAreIn = "Page2Middle"
     }
+    if (wichOne == "fromHomePage") {
+        Page2.style.display = "none"
+        Page2Middle.style.display = "none"
+        Page1.style.display = "block"
+        wichPageYouAreIn = "Page1"
+    }
+    if (wichOne == "showDevices") {
+        $.querySelector(".LearnPageItem").style.display = "none"
+        $.querySelector(".LearnPageItemChooseYourDevice").style.display = "block"
+    }
+    if (wichOne == "mobileSelected") {
+        $.querySelector(".LearnPageItemChooseYourDevice").style.display = "none"
+        $.querySelector(".LearnPageItemVideos").style.display = "flex"
+        $.querySelector(".LearnPageItemVideosVideo").setAttribute("src", "")
+    }
+    if (wichOne == "pcSelected") {
+        $.querySelector(".LearnPageItemChooseYourDevice").style.display = "none"
+        $.querySelector(".LearnPageItemVideos").style.display = "flex"
+        $.querySelector(".LearnPageItemVideosVideo").setAttribute("src", "")
+    }
 }
+
+
+
+// For when click on menu items show that page //////////////////////
+websitePagesMneu.forEach(function (everyMenu) {
+    everyMenu.addEventListener("click", function () {
+        websitePages.forEach(function (everyPage) {
+            everyPage.style.display = "none"
+        })
+        let everyMenuSecondClass = everyMenu.classList[1]
+        everyMenuSecondClass = "." + everyMenuSecondClass.substring(0, everyMenuSecondClass.length - 4);
+        $.querySelector(everyMenuSecondClass).style.display = "block";
+
+        Page2HeaderPageTitle.innerHTML = "پنل کاربری / " + everyMenu.textContent
+
+        if (LearnPageItemChooseYourDevice.style.display != "none" || LearnPageItemVideos.style.display != "none") {
+            LearnPageItemChooseYourDevice.style.display = "none"
+            LearnPageItemVideos.style.display = "none"
+            $.querySelector(".LearnPageItem").style.display = "flex"
+        }
+    })
+})
+/////////////////////////////////////////////////////////////////////
+
+
+function logOutUser() {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    showPages("fromHomePage")
+}
+
+async function loadUserProfile() {
+    document.querySelector(".ProfilePagePersonNameInput").value = userName
+    document.querySelector(".ProfilePagePersonNumberInput").value = userUserName
+    document.querySelector(".ProfilePagePersonPasswordInput").value = userPassword
+
+}
+
+function logIranDate() {
+    let today = new Date().toLocaleDateString('fa-IR');
+    return convertToEnglishNumber(today);
+}
+
+
+// For converting persian numbers to english numbers
+function convertToEnglishNumber(persianNumber) {
+    const persianDigits = /[\u06F0-\u06F9]/g;
+    const persianToEnglish = {
+        "۰": "0",
+        "۱": "1",
+        "۲": "2",
+        "۳": "3",
+        "۴": "4",
+        "۵": "5",
+        "۶": "6",
+        "۷": "7",
+        "۸": "8",
+        "۹": "9",
+    };
+    return persianNumber.replace(
+        persianDigits,
+        (match) => persianToEnglish[match]
+    );
+}
+
+
+function logIranTime() {
+    let iranTime = new Date().toLocaleTimeString('fa-IR', { timeZone: 'Asia/Tehran' });
+    return convertToEnglishNumber(iranTime);
+}
+
+
+function sendAnnouncement(sender, announceMessage, announceid) {
+    // Get the current date in the format required by Back4App
+    var date = logIranDate();
+
+    // Create a new object with the data to be saved
+    var announcement = {
+        sender: sender,
+        date: date,
+        announceMessage: announceMessage,
+        announceid: announceid
+    };
+
+    // Save the object to the "Announcements" collection using the Back4App SDK
+    var Announcements = Parse.Object.extend("Announcements");
+    var announcementObject = new Announcements();
+    announcementObject.save(announcement).then(function (response) {
+        console.log('Announcement saved successfully:', response);
+    }, function (error) {
+        console.error('Error while saving announcement:', error);
+    });
+}
+
+sendAnnouncement("پشتیبانی سامانه مدیریت کلاس", "سلام ، به سامانه مدیریت کلاس خوش آمدید!", 1)
+
+
+
+
+
+
+
+
 
 
 
@@ -185,3 +304,29 @@ Page1LoginBtn.addEventListener("click", login)
 document.addEventListener("DOMContentLoaded", function () {
     autoUserLogInWithCookie();
 });
+Page2RightMenuListItemsExit.addEventListener("click", logOutUser)
+Page2HeaderIconsExit.addEventListener("click", logOutUser)
+Page2HeaderIconsProfile.addEventListener("click", function () {
+    $.querySelector(".ProfilePageMenu").click()
+})
+Page2MiddleRightTopBox.addEventListener("click", function () {
+    $.querySelector(".HomeWorkPageMenu").click()
+})
+Page2MiddleLeftTopBox.addEventListener("click", function () {
+    $.querySelector(".AnnouncementsPageMenu").click()
+})
+Page2MiddleBottomBoxBtn.addEventListener("click", function () {
+    $.querySelector(".SupportPageMenu").click()
+})
+
+
+
+$.querySelector(".LearnPageItem").addEventListener("click", function () {
+    showPages("showDevices")
+})
+$.querySelector(".LearnPageItemChooseYourDeviceItemsMobile").addEventListener("click", function () {
+    showPages("mobileSelected")
+})
+$.querySelector(".LearnPageItemChooseYourDeviceItemsPC").addEventListener("click", function () {
+    showPages("pcSelected")
+})
