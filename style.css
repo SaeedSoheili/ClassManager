@@ -222,6 +222,7 @@ body {
     height: 36px;
     margin-left: 50px;
     margin-top: 7px;
+    cursor: pointer;
 }
 
 .Page2HeaderIconsProfile {
@@ -229,6 +230,7 @@ body {
     height: 40px;
     margin-left: 30px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .Page2HeaderPageTitle {
@@ -670,7 +672,135 @@ body {
 
 /* Page 2 Support FINISH */
 
+/* Teachers Page START */
 
+.TeachersPageDiv {
+    width: 800px;
+    height: 600px;
+    margin: 50px auto;
+    background-color: #22396F;
+    border-radius: 20px;
+    position: relative;
+    display: block;
+}
+
+.TeachersPageTabsDiv {
+    width: 100%;
+    height: 50px;
+    background-color: #0E184D;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    color: #fff;
+    font-family: vazir;
+    text-align: center;
+    display: flex;
+    direction: rtl;
+
+}
+
+.TeacherPageTabs {
+    width: 100%;
+    margin-top: 10px;
+    transition: 0.5s;
+
+}
+
+.TeacherPageTabs:hover {
+    background-color: #22396F;
+    margin-top: 0px;
+    padding-top: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: 0.5s;
+}
+
+.TeacherPageTabsActive {
+    background-color: #22396F;
+    margin-top: 0px;
+    padding-top: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: 0.5s;
+}
+
+.TeachersPageAddNewPersonDiv {
+    display: flex;
+    position: relative;
+}
+
+.TeachersPageAddNewPersonBtn {
+    width: 90%;
+    margin: 10px auto;
+    font-family: vazir;
+}
+
+.TeachersPageAddNewPersonFindStudent {
+    display: flex;
+    position: relative;
+}
+
+.TeachersPageAddNewPersonFindStudentInput {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: vazir;
+    border-radius: 5px;
+}
+
+.TeachersPageAddNewPersonTableDiv {
+    background-color: #f8f9fa;
+    width: 720px;
+    height: 430px;
+    margin: 0 auto;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: scroll;
+}
+
+.TeachersPageAddNewPersonTable {
+    direction: rtl;
+    font-family: vazir;
+
+}
+
+
+/* Teachers Page FINISH */
+
+/* Homeworks Page START */
+
+.HomeworksPageFindStudent {
+    display: flex;
+    position: relative;
+}
+
+.HomeworksPageFindStudentInput {
+    width: 90%;
+    margin: 20px auto;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: vazir;
+    border-radius: 5px;
+}
+
+.HomeworksPageTableDiv {
+    background-color: #f8f9fa;
+    width: 720px;
+    height: 430px;
+    margin: 0 auto;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: scroll;
+}
+
+.HomeworksPageTable {
+    direction: rtl;
+    font-family: vazir;
+
+}
+
+/* Homeworks Page FINISH */
 
 
 /* Responsive */
