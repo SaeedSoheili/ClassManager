@@ -18,7 +18,7 @@
     <div class="pageContainer">
 
         <!-- Page 1 Login Page START -->
-        <div style="display: none;" class="Page1">
+        <div class="Page1">
             <div class="Page1HeaderEffectDiv">
                 <div class="box"></div>
             </div>
@@ -216,18 +216,19 @@
         <!-- Page 2 Home Page FINISH -->
 
         <!-- Teachers Page START -->
-        <div class="TeachersPage">
+        <div style="display: none;" class="TeachersPage">
             <div class="TeachersPageDiv">
                 <div class="TeachersPageTabsDiv">
-                    <div class="TeacherPageTabs TeacherPageTabsActive">دانشجو ها</div>
-                    <div class="TeacherPageTabs">تکالیف</div>
-                    <div class="TeacherPageTabs">اطلاعیه ها</div>
-                    <div class="TeacherPageTabs">پشتیبانی</div>
-                    <div class="TeacherPageTabs">خروج</div>
+                    <div class="TeacherPageTabs TeacherPageTabs2 TeacherPageTabsActive" id="StudentsPage">دانشجو ها
+                    </div>
+                    <div class="TeacherPageTabs TeacherPageTabs2" id="HomeworksPage">تکالیف</div>
+                    <div class="TeacherPageTabs TeacherPageTabs2" id="AnnouncementsPage2">اطلاعیه ها</div>
+                    <div class="TeacherPageTabs TeacherPageTabs2" id="SupportPage2">پشتیبانی</div>
+                    <div class="TeacherPageTabs TeacherPageTabsExit">خروج</div>
                 </div>
                 <!-- Students Page START -->
-                <div style="display: none;" class="StudentsPage">
-                    <div class="TeachersPageAddNewPersonDiv">
+                <div style="display: none;" class="StudentsPage teachersPagesList">
+                    <div class="TeachersPageAddNewPersonDiv" data-bs-toggle="modal" data-bs-target="#newStudentModal">
                         <div class="TeachersPageAddNewPersonBtn btn btn-success"><img width="25" height="25"
                                 src="assets/status-icons/icons8-plus-48-green.png" alt="plus--v1" /> افزودن دانشجو</div>
                     </div>
@@ -247,7 +248,7 @@
                                 <th>تکالیف رد شده</th>
                                 <th>تکالیف در انتظار بررسی</th>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>#1</td>
                                 <td>محمد حسینی</td>
                                 <td>4444555566666</td>
@@ -255,14 +256,42 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                            </tr>
+                            </tr> -->
                         </table>
                     </div>
                 </div>
+                <!-- New Student Modal START -->
+                <center>
+                    <div class="modal fade" id="newStudentModal" tabindex="-1" aria-labelledby="newStudentModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newStudentModalLabel">افزودن دانشجوی جدید</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" class="newStudentModalInputName" dir="rtl"
+                                        placeholder="نام و نام خانوادگی">
+                                    <input type="text" class="newStudentModalInputUsername" dir="rtl"
+                                        placeholder="شماره دانشجویی">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">خروج</button>
+                                    <button type="button" class="newStudentModalSubmit btn btn-primary"
+                                        data-bs-dismiss="modal">افزودن دانشجو</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                <!-- New Student Modal FINISH -->
                 <!-- Students Page FINISH -->
 
                 <!-- Homeworks Page START -->
-                <div style="display: none;" class="HomeworksPage">
+                <div style="display: none;" class="HomeworksPage teachersPagesList">
                     <div class="HomeworksPageFindStudent">
                         <input class="HomeworksPageFindStudentInput"
                             placeholder="نام یا شماره دانشجویی را وارد کنید جهت جستجو">
@@ -287,10 +316,14 @@
                                 <td><img src="assets/status-icons/icons8-view-more-96.png" width="25px" height="25px">
                                 </td>
                                 <td>1402/2/21 23:15</td>
-                                <td><img src="assets/status-icons/icons8-ok-96.png" width="25px" height="25px"><img
+                                <td>
+                                    <img class="changeStatusToAccepted changeStatus"
+                                        src="assets/status-icons/icons8-ok-96.png" width="25px" height="25px"><img
+                                        class="changeStatusToPending changeStatus"
                                         src="assets/status-icons/icons8-view-more-96.png" width="25px"
-                                        height="25px"><img src="assets/status-icons/icons8-cancel-96.png" width="25px"
-                                        height="25px"></td>
+                                        height="25px"><img class="changeStatusToRejected changeStatus"
+                                        src="assets/status-icons/icons8-cancel-96.png" width="25px" height="25px">
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -298,9 +331,10 @@
                 <!-- Homeworks Page FINISH -->
 
                 <!-- Announcements Page START -->
-                <div style="display: none;" class="AnnouncementsPage">
+                <div style="display: none;" class="AnnouncementsPage2 teachersPagesList">
                     <div class="AnnouncementsPageAddNewAnnouncementsDiv">
-                        <div class="AnnouncementsPageAddNewAnnouncementsBtn btn btn-warning"><img width="25" height="25"
+                        <div class="AnnouncementsPageAddNewAnnouncementsBtn btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#newAnnounceModal"><img width="25" height="25"
                                 src="assets/status-icons/icons8-plus-48-yellow.png" alt="plus--v1" /> اطلاعیه جدید
                         </div>
                     </div>
@@ -313,22 +347,52 @@
                                 <th>پیام</th>
                                 <th>تاریخ</th>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>#1</td>
                                 <td>زهرا حیدری</td>
                                 <td>سلام ، به سامانه مدیریت کلاس خوش آمدید!</td>
                                 <td>1402/2/22 13:19</td>
-                            </tr>
+                            </tr> -->
                         </table>
                     </div>
                 </div>
+
+                <!-- New Announce Modal START -->
+                <center>
+                    <div class="modal fade" id="newAnnounceModal" tabindex="-1" aria-labelledby="newAnnounceModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newAnnounceModalLabel">ارسال اطلاعیه جدید</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>لطفا پیام خود را بنویسید</p>
+                                    <input type="text" class="newAnnounceModalInput" dir="rtl">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">خروج</button>
+                                    <button type="button" class="newAnnounceModalSubmit btn btn-primary"
+                                        data-bs-dismiss="modal">ارسال
+                                        پیام</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                <!-- New Announce Modal FINISH -->
+
                 <!-- Announcements Page FINISH -->
 
                 <!-- Support Page START -->
 
-                <div class="SupportPage">
-
-                    <h1>این صفحه به زودی در دسترس عموم قرار می گیرد</h1>
+                <div style="display: none;" class="SupportPage2 teachersPagesList">
+                    <div class="SupportPage2Div">
+                        <h1>این صفحه به زودی در دسترس عموم قرار می گیرد</h1>
+                    </div>
 
                 </div>
 

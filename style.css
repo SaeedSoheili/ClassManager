@@ -703,7 +703,7 @@ body {
     width: 100%;
     margin-top: 10px;
     transition: 0.5s;
-
+    cursor: pointer;
 }
 
 .TeacherPageTabs:hover {
@@ -747,6 +747,7 @@ body {
     text-align: center;
     font-family: vazir;
     border-radius: 5px;
+    cursor: text;
 }
 
 .TeachersPageAddNewPersonTableDiv {
@@ -782,6 +783,7 @@ body {
     text-align: center;
     font-family: vazir;
     border-radius: 5px;
+    cursor: text;
 }
 
 .HomeworksPageTableDiv {
@@ -797,13 +799,20 @@ body {
 .HomeworksPageTable {
     direction: rtl;
     font-family: vazir;
+}
 
+.HomeworksPageTable a {
+    cursor: copy;
+}
+
+.changeStatus {
+    cursor: pointer;
 }
 
 /* Homeworks Page FINISH */
 
 /* Announcements Page START */
-.AnnouncementsPage {
+.AnnouncementsPage2 {
     width: 100%;
 }
 
@@ -814,7 +823,7 @@ body {
 
 .AnnouncementsPageAddNewAnnouncementsBtn {
     width: 90%;
-    margin: 10px auto;
+    margin: 20px auto;
     font-family: vazir;
 }
 
@@ -837,12 +846,16 @@ body {
 /* Announcements Page FINISH */
 /* Support Page START  */
 
-.SupportPage {
+.SupportPage2 {
     width: 100%;
+    display: block;
+}
+
+.SupportPage2Div {
     display: flex;
 }
 
-.SupportPage h1 {
+.SupportPage2 h1 {
     font-size: 20px;
     color: white;
     font-family: vazir;

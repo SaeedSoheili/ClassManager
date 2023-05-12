@@ -14,6 +14,7 @@ let userName;
 let userUserName;
 let userPassword;
 let userTeacherName;
+let userIsTeacher = false
 let userLoggedIn = false
 
 let $ = document
@@ -38,6 +39,15 @@ let LearnPageItemChooseYourDevice = $.querySelector(".LearnPageItemChooseYourDev
 let LearnPageItemVideos = $.querySelector(".LearnPageItemVideos")
 let uploadedlinkInput = $.querySelector(".HomeWorkPageAddNewInput")
 
+let TeacherPageTabs = $.querySelectorAll(".TeacherPageTabs2")
+let teachersPagesList = $.querySelectorAll(".teachersPagesList")
+
+let newAnnounceModalInput = $.querySelector(".newAnnounceModalInput")
+let TeachersPage = $.querySelector(".TeachersPage")
+
+let newStudentModalSubmit = $.querySelector(".newStudentModalSubmit")
+let newStudentModalInputName = $.querySelector(".newStudentModalInputName")
+let newStudentModalInputUsername = $.querySelector(".newStudentModalInputUsername")
 
 
 //////// for responsive the middle of the page with big screen sizes ///////////////
@@ -63,13 +73,25 @@ async function login() {
         userUserName = user.get("username");
         userPassword = user.get("globalpassword");
         userTeacherName = user.get("userTeacherName");
+        userIsTeacher = user.get("isteacher");
         userLoggedIn = true;
 
+
         generateCookie("token", generateToken(), generateExpireTime())
-        showPages("fromLoginPage")
-        loadUserProfile()
-        loadAnnouncements()
-        loadHomeworks()
+        if (userIsTeacher == true) {
+            showPages("fromLoginPageToTeachersPage")
+            loadTeachersAnnouncements()
+            loadTeachersHomeworks()
+            loadStudents()
+
+        } else {
+            showPages("fromLoginPage")
+            loadUserProfile()
+            loadAnnouncements()
+            loadHomeworks()
+
+        }
+
     } catch (error) {
         userLoggedIn = false
     }
@@ -155,13 +177,25 @@ async function autoLoginWithCookie(userusername, password) {
         userName = user.get("name");
         userUserName = user.get("username");
         userPassword = user.get("globalpassword");
+        userTeacherName = user.get("userTeacherName");
+        userIsTeacher = user.get("isteacher");
         userLoggedIn = true;
 
+
         generateCookie("token", generateToken(), generateExpireTime())
-        showPages("fromLoginPage")
-        loadUserProfile()
-        loadAnnouncements()
-        loadHomeworks()
+        if (userIsTeacher == true) {
+            showPages("fromLoginPageToTeachersPage")
+            loadTeachersAnnouncements()
+            loadTeachersHomeworks()
+            loadStudents()
+
+        } else {
+            showPages("fromLoginPage")
+            loadUserProfile()
+            loadAnnouncements()
+            loadHomeworks()
+
+        }
     } catch (error) {
         // If unsuccessful, notify the user or do something else
         // console.log(`Error: ${error.message}`);
@@ -196,6 +230,18 @@ function showPages(wichOne) {
         $.querySelector(".LearnPageItemVideos").style.display = "flex"
         $.querySelector(".LearnPageItemVideosVideo").setAttribute("src", "")
     }
+    if (wichOne == "fromLoginPageToTeachersPage") {
+        Page1.style.display = "none"
+        TeachersPage.style.display = "block"
+        wichPageYouAreIn = "TeachersPage"
+        TeacherPageTabs[0].click()
+
+    }
+    if (wichOne == "fromTeachersPageToLoginPage") {
+        Page1.style.display = "block"
+        TeachersPage.style.display = "none"
+        wichPageYouAreIn = "Page1"
+    }
 }
 
 
@@ -224,7 +270,13 @@ websitePagesMneu.forEach(function (everyMenu) {
 
 function logOutUser() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    showPages("fromHomePage")
+
+    if (userIsTeacher == true) {
+        showPages("fromTeachersPageToLoginPage")
+    } else {
+        showPages("fromHomePage")
+    }
+
 }
 
 async function loadUserProfile() {
@@ -286,6 +338,7 @@ async function sendAnnouncement(sender, announceMessage) {
     let announcementObject = new Announcements();
     announcementObject.save(announcement).then(function (response) {
         console.log('Announcement saved successfully:', response);
+        loadTeachersAnnouncements()
     }, function (error) {
         console.error('Error while saving announcement:', error);
     });
@@ -364,6 +417,51 @@ function loadAnnouncements() {
         console.error('Error while loading announcements:', error);
     });
 }
+function loadTeachersAnnouncements() {
+    // Create a new query for the "Announcements" collection
+    let Announcements = Parse.Object.extend("Announcements");
+    let query = new Parse.Query(Announcements);
+
+    // Limit the query to the 50 most recent announcements
+    query.ascending("createdAt");
+    query.limit(50);
+
+    // Execute the query and process the results
+    query.find().then(function (results) {
+        // Get a reference to the element where the announcements will be displayed
+        let announcementList = $.querySelector(".AnnouncementsPageTable");
+
+        // Clear any existing announcements from the list
+        announcementList.innerHTML = `                            
+        <tr>
+        <th></th>
+        <th>فرستنده</th>
+        <th>پیام</th>
+        <th>تاریخ</th>
+        </tr>
+        `;
+
+        // Loop through the results and add each announcement to the list
+        for (let i = results.length - 1; i >= 0; i--) {
+            let announcement = results[i];
+            let sender = announcement.get("sender");
+            let date = announcement.get("date");
+            let message = announcement.get("announceMessage");
+            let id = announcement.get("announceid");
+
+            announcementList.innerHTML += `
+            <tr>
+            <td>#${id}</td>
+            <td>${sender}</td>
+            <td>${message}</td>
+            <td>${date}</td>
+            </tr>
+            `;
+        }
+    }, function (error) {
+        console.error('Error while loading announcements:', error);
+    });
+}
 
 
 
@@ -382,7 +480,8 @@ async function sendHomework(sender, homeworklink, teachername, status) {
         homeworklink: homeworklink,
         homeworkid: homeworkidgenerated,
         status: status,
-        teachername: teachername
+        teachername: teachername,
+        senderUsername: userUserName
     };
 
     // Save the object to the "Announcements" collection using the Back4App SDK
@@ -479,10 +578,225 @@ function loadHomeworks() {
     });
 }
 
+function loadTeachersHomeworks() {
+    // Create a new query for the "Homeworks" collection
+    let Homeworks = Parse.Object.extend("Homeworks");
+    let query = new Parse.Query(Homeworks);
+
+    query.equalTo("teachername", userName);
+    query.ascending("createdAt");
+
+    // Execute the query and process the results
+    query.find().then(function (results) {
+        // Get a reference to the element where the Homeworks will be displayed
+        let homeworksList = $.querySelector(".HomeworksPageTable");
+
+        // Clear any existing Homeworks from the list
+        homeworksList.innerHTML = `
+        <tr>
+        <th></th>
+        <th>نام و نام خانوادگی</th>
+        <th>شماره دانشجویی</th>
+        <th>فایل تکلیف</th>
+        <th>وضعیت</th>
+        <th>تاریخ</th>
+        <th>مدیریت</th>
+        </tr>
+        `
+
+        // Loop through the results and add each Homeworks to the list
+        for (let i = results.length - 1; i >= 0; i--) {
+            let homeworks = results[i];
+            let sender = homeworks.get("sender");
+            let date = homeworks.get("date");
+            let homeworklink = homeworks.get("homeworklink");
+            let homeworkid = homeworks.get("homeworkid");
+            let status = homeworks.get("status");
+            let teachername = homeworks.get("teachername");
+            let senderUsername = homeworks.get("senderUsername");
+
+            if (status == "pending") {
+                status = "assets/status-icons/icons8-view-more-96.png"
+            } else if (status == "accepted") {
+                status = "assets/status-icons/icons8-ok-96.png"
+            } else if (status == "rejected") {
+                status = "assets/status-icons/icons8-cancel-96.png"
+            }
+
+            homeworksList.innerHTML += `
+            <tr>
+            <td>#${homeworkid}</td>
+            <td>${sender}</td>
+            <td>${senderUsername}</td>
+            <td><a href="${homeworklink}">دریافت فایل</a></td>
+            <td><img src="${status}" width="25px" height="25px"></td>
+            <td>${date}</td>
+            <td>
+                <img class="changeStatusToAccepted changeStatus" src="assets/status-icons/icons8-ok-96.png" width="25px" height="25px"><img class="changeStatusToPending changeStatus" src="assets/status-icons/icons8-view-more-96.png" width="25px" height="25px"><img class="changeStatusToRejected changeStatus" src="assets/status-icons/icons8-cancel-96.png" width="25px" height="25px"></td>
+            </tr>
+            `
+            changeStatus()
+        }
+    }, function (error) {
+        console.error('Error while loading homeworks:', error);
+    });
+}
+
+
+
+// Showing Pages on Teachers Page
+TeacherPageTabs.forEach(function (TeacherPageTab) {
+    TeacherPageTab.addEventListener("click", function (event) {
+        TeacherPageTabs.forEach(function (tabs) {
+            tabs.classList.remove("TeacherPageTabsActive")
+        })
+
+
+        teachersPagesList.forEach(function (page) {
+            page.style.display = "none";
+        })
+        let clickedTab = event.target
+        clickedTab.classList.add("TeacherPageTabsActive")
+        let thatPageClass = "." + clickedTab.getAttribute("id")
+        $.querySelector(thatPageClass).style.display = "block"
+    })
+})
 
 
 
 
+function changeStatus() {
+    $.querySelectorAll(".changeStatus").forEach(function (thatElement) {
+        thatElement.addEventListener("click", function (thatElement) {
+            let clickedElement = thatElement.target;
+            let thatHomeWorkId = parseInt(
+                clickedElement.parentNode.parentNode.children[0].innerHTML.substring(1)
+            );
+            let thatHomeWorkUserName =
+                clickedElement.parentNode.parentNode.children[2].innerHTML;
+
+            // Query the "Homeworks" class for objects with matching properties
+            const Homeworks = Parse.Object.extend("Homeworks");
+            const query = new Parse.Query(Homeworks);
+            query.equalTo("senderUsername", thatHomeWorkUserName);
+            query.equalTo("homeworkid", thatHomeWorkId);
+
+            query.first().then((homeworkObject) => {
+                // Update the "status" property based on the clicked element
+                if (clickedElement.classList.contains("changeStatusToAccepted")) {
+                    homeworkObject.set("status", "accepted");
+                } else if (clickedElement.classList.contains("changeStatusToPending")) {
+                    homeworkObject.set("status", "pending");
+                } else if (clickedElement.classList.contains("changeStatusToRejected")) {
+                    homeworkObject.set("status", "rejected");
+                }
+
+                // Save the changes to the object in the database
+                homeworkObject.save().then((updatedObject) => {
+                    console.log("Object updated:", updatedObject);
+                    loadTeachersHomeworks()
+                    loadStudents()
+                }).catch((error) => {
+                    console.error("Error updating object:", error);
+                });
+            }).catch((error) => {
+                console.error("Error querying for object:", error);
+            });
+        });
+    });
+}
+
+function loadStudents() {
+    const User = Parse.Object.extend('User');
+    const query = new Parse.Query(User);
+    query.equalTo('isteacher', false);
+    query.find().then((results) => {
+        const table = document.querySelector('.TeachersPageAddNewPersonTable');
+        table.innerHTML = `
+        <tr>
+        <th></th>
+        <th>نام و نام خانوادگی</th>
+        <th>شماره دانشجویی</th>
+        <th>تکالیف تحویل داده شده</th>
+        <th>تکالیف قبول شده</th>
+        <th>تکالیف رد شده</th>
+        <th>تکالیف در انتظار بررسی</th>
+        </tr>
+        `
+        results.forEach((result, index) => {
+            const row = table.insertRow(index + 1);
+            const numberCell = row.insertCell(0);
+            const nameCell = row.insertCell(1);
+            const studentIdCell = row.insertCell(2);
+            const submittedHomeworksCell = row.insertCell(3);
+            const acceptedHomeworksCell = row.insertCell(4);
+            const rejectedHomeworksCell = row.insertCell(5);
+            const pendingHomeworksCell = row.insertCell(6);
+
+            nameCell.innerHTML = result.get('name');
+            studentIdCell.innerHTML = result.get('username');
+            const thatRowNumber = index + 1
+            numberCell.innerHTML = "#" + thatRowNumber
+            // Count submitted homeworks
+            const Homeworks = Parse.Object.extend('Homeworks');
+            const homeworkQuery = new Parse.Query(Homeworks);
+            homeworkQuery.equalTo('senderUsername', result.get('username'));
+            homeworkQuery.count().then((count) => {
+                submittedHomeworksCell.innerHTML = count;
+            });
+
+            // Count accepted homeworks
+            const acceptedQuery = new Parse.Query(Homeworks);
+            acceptedQuery.equalTo('senderUsername', result.get('username'));
+            acceptedQuery.equalTo('status', 'accepted');
+            acceptedQuery.count().then((count) => {
+                acceptedHomeworksCell.innerHTML = count;
+            });
+
+            // Count rejected homeworks
+            const rejectedQuery = new Parse.Query(Homeworks);
+            rejectedQuery.equalTo('senderUsername', result.get('username'));
+            rejectedQuery.equalTo('status', 'rejected');
+            rejectedQuery.count().then((count) => {
+                rejectedHomeworksCell.innerHTML = count;
+            });
+
+            // Count pending homeworks
+            const pendingQuery = new Parse.Query(Homeworks);
+            pendingQuery.equalTo('senderUsername', result.get('username'));
+            pendingQuery.equalTo('status', 'pending');
+            pendingQuery.count().then((count) => {
+                pendingHomeworksCell.innerHTML = count;
+            });
+        });
+    });
+}
+
+
+function createNewUser(name, username) {
+    // Create a new instance of the User class
+    const User = Parse.Object.extend('User');
+    const newUser = new User();
+
+    // Set the properties of the new user
+    newUser.set('name', name);
+    newUser.set('username', username);
+    newUser.set('isteacher', false);
+    newUser.set('password', username);
+    newUser.set('globalpassword', username);
+    newUser.set('userTeacherName', userName);
+    // Save the new user to the database
+    newUser.save().then(
+        (result) => {
+            loadStudents()
+            // Do something else if needed
+        },
+        (error) => {
+            console.error('Error creating user:', error);
+            // Do something else if needed
+        }
+    );
+}
 
 
 
@@ -525,4 +839,11 @@ $.querySelector(".HomeWorkPageAddNewBtn").addEventListener("click", function () 
 
     sendHomework(userName, uploadedlinkInput.value, userTeacherName, "pending")
 
+})
+
+$.querySelector(".newAnnounceModalSubmit").addEventListener("click", function () {
+    sendAnnouncement(userName, newAnnounceModalInput.value)
+})
+$.querySelector(".TeacherPageTabsExit").addEventListener("click", function () {
+    logOutUser()
 })
