@@ -774,26 +774,24 @@ function loadStudents() {
 
 
 function createNewUser(name, username) {
-    // Create a new instance of the User class
     const User = Parse.Object.extend('User');
     const newUser = new User();
 
-    // Set the properties of the new user
     newUser.set('name', name);
     newUser.set('username', username);
     newUser.set('isteacher', false);
     newUser.set('password', username);
     newUser.set('globalpassword', username);
     newUser.set('userTeacherName', userName);
+
     // Save the new user to the database
     newUser.save().then(
         (result) => {
-            loadStudents()
-            // Do something else if needed
-        },
+            loadStudents();
+        }
+    ).catch(
         (error) => {
             console.error('Error creating user:', error);
-            // Do something else if needed
         }
     );
 }
