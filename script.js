@@ -215,6 +215,9 @@ function showPages(wichOne) {
         Page2Middle.style.display = "none"
         Page1.style.display = "block"
         wichPageYouAreIn = "Page1"
+        $.querySelectorAll(".websitePages").forEach(function (thatElement) {
+            thatElement.style.display = "none"
+        })
     }
     if (wichOne == "showDevices") {
         $.querySelector(".LearnPageItem").style.display = "none"
@@ -528,7 +531,8 @@ function loadHomeworks() {
     let Homeworks = Parse.Object.extend("Homeworks");
     let query = new Parse.Query(Homeworks);
 
-    // Limit the query to the 50 most recent Homeworks
+    console.log(userUserName)
+    query.equalTo("senderUsername", userUserName);
     query.ascending("createdAt");
 
     // Execute the query and process the results
