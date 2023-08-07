@@ -87,7 +87,7 @@ Development:
  - [ ]  Use Backend and Database system
  - [ ]  Develop Frontend with React.js or appropriate frameworks
  - [ ]  Secure the software
-## 👋 About Us
+## :wave: About Us
 
 We are passionate about enhancing the educational experience for both teachers and students. ClassManager is a testament to our commitment to providing efficient and user-friendly tools for the academic community. Im always open to feedback and collaboration. Let's transform the world of education together!
 
