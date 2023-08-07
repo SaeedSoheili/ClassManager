@@ -19,7 +19,7 @@ Teachers Panel:
 
 ## :memo: Roadmap
 
-Completed Tasks:  <br />
+- Completed Tasks:  <br />
 - [X]  Login system for students and teachers
 - [X]  Students-specific dashboard
 - [X]  Teachers-specific dashboard
@@ -32,57 +32,57 @@ Completed Tasks:  <br />
 - [X]  Auto Login with cookies  
 - [X]  Using Back4App website for backendless to have a database and full-function software
 
-User Management:  <br />
+- User Management:  <br />
 - [ ]  User registration with email verification.
 - [ ]  User login with password recovery.
 - [ ]  Profile management (profile picture, bio, contact details).
 - [ ] Role-based access (Student, Teacher, Admin).
-Class Management:  <br />
+- Class Management:  <br />
  - [ ]  Create, edit, and delete classes.
  - [ ]  Assign students and teachers to classes.
  - [ ]  Schedule class timings with calendar integration.
  - [ ]  Set class capacity limits.
  - [ ]  Automated waiting list for overbooked classes.
-Assignment Management:  <br />
+- Assignment Management:  <br />
  - [ ]  Teachers can create, edit, and delete assignments.
  - [ ]  Students can view and submit assignments.
  - [ ]  Deadline reminders for assignments.
  - [ ]  Grading system for assignments with feedback.
-Communication:  <br />
+- Communication:  <br />
  - [ ]  In-app messaging system for students and teachers.
  - [ ]  Group chats for class discussions.
  - [ ]  Notification system for class updates and announcements.
  - [ ]  Video conferencing integration for online classes.
-Resource Library:  <br />
+- Resource Library:  <br />
  - [ ]  Upload and organize study materials (PDFs, videos, links).
  - [ ]  Search functionality for resources.
  - [ ]  Access controls based on user roles.
-Scheduling & Calendar:  <br />
+- Scheduling & Calendar:  <br />
  - [ ]  Calendar view for class schedules.
  - [ ]  Integration with external calendars (Google Calendar, iCal).
  - [ ]  Automated reminders for upcoming classes.
-Analytics & Reporting:  <br />
+- Analytics & Reporting:  <br />
  - [ ]  Attendance tracking and reporting.
  - [ ]  Performance analytics for students (grades, participation).
  - [ ]  Class performance metrics for teachers.
-Feedback & Reviews:  <br />
+- Feedback & Reviews:  <br />
  - [ ]  Students can rate and review classes.
  - [ ]  Teachers can gather feedback on teaching methods.
-Mobile Responsiveness:  <br />
+- Mobile Responsiveness:  <br />
  - [ ]  Ensure the platform is optimized for mobile devices.
  - [ ]  Mobile app integration (if applicable).
-Security & Privacy:  <br />
+- Security & Privacy:  <br />
  - [ ]  Data encryption for sensitive information.
  - [ ]  Regular security audits and updates.
  - [ ]  GDPR compliance for user data protection.
-Integrations & API:  <br />
+- Integrations & API:  <br />
  - [ ]  Integration with third-party tools (e.g., Google Workspace, Zoom).
  - [ ]  API development for external app integrations.
-Miscellaneous:  <br />
+- Miscellaneous:  <br />
  - [ ]  Dark mode for user interface.
  - [ ]  Multilingual support.
  - [ ]  User tutorials and onboarding guides.
-Development:  <br />
+- Development:  <br />
  - [ ]  Use Backend and Database system
  - [ ]  Develop Frontend with React.js or appropriate frameworks
  - [ ]  Secure the software
