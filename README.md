@@ -1,11 +1,11 @@
 
-#  ClassManager
+# :school: ClassManager
 
 ClassManager is an intuitive online platform designed for educators and students alike. It streamlines the process of class management, allowing teachers to organize lessons, assignments, and student records with ease. Students, on the other hand, can track their assignments, view class schedules, and communicate with their peers and instructors seamlessly.
 
 
 
-## Demo
+## :cyclone: Demo
 
 Live Demo: https://classme.netlify.app/
 
@@ -17,7 +17,7 @@ Teachers Panel:
 - Username: zahraheydari
 - Password: 123456789
 
-## Roadmap
+## :memo: Roadmap
 
 Completed Tasks:
 
