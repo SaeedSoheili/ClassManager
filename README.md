@@ -89,4 +89,4 @@ Development:  <br /><br />
 
 We are passionate about enhancing the educational experience for both teachers and students. ClassManager is a testament to our commitment to providing efficient and user-friendly tools for the academic community. Im always open to feedback and collaboration. Let's transform the world of education together!
 
-- [MinusMarigold98](https://www.discordapp.com/users/382244660208205824) - Frontend Developer
+- [Saeed Soheili](https://www.discordapp.com/users/382244660208205824) - Frontend Developer
