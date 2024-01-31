@@ -30,7 +30,10 @@ Completed Tasks:  <br />
 - [X]  Students can upload their homework and see their status
 - [X]  Students can see their teacher's announcements
 - [X]  Auto Login with cookies  
-- [X]  Using Back4App website for backendless to have a database and full-function software <br /><br />
+- [X]  Using Back4App website for backendless to have a database and full-function software
+- [ ]  Create support page
+- [ ]  Multi Languages
+- [ ]  Responsive design  <br /><br />
 
 ## :wave: About Us
 
